@@ -125,7 +125,22 @@ class _LocaleItem extends ConsumerWidget {
 
   String _getLocaleString(Locale? locale) {
     if (locale == null) return appLocalizations.defaultText;
-    return Intl.message(locale.toString());
+    
+    // Always show language names in their original language
+    switch (locale.toString()) {
+      case 'en':
+        return 'English';
+      case 'ja':
+        return '日本語';
+      case 'ru':
+        return 'Русский';
+      case 'zh_CN':
+        return '简体中文';
+      case 'vi':
+        return 'Tiếng Việt';
+      default:
+        return locale.toString();
+    }
   }
 
   @override
