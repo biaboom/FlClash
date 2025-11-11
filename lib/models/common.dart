@@ -202,6 +202,7 @@ abstract class DAV with _$DAV {
 abstract class WebAPI with _$WebAPI {
   const factory WebAPI({
     required String url,
+    @Default(false) bool autoDownload,
   }) = _WebAPI;
 
   factory WebAPI.fromJson(Map<String, Object?> json) => _$WebAPIFromJson(json);

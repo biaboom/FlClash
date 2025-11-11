@@ -613,18 +613,21 @@ class WebAPIFormDialog extends ConsumerStatefulWidget {
 
 class _WebAPIFormDialogState extends ConsumerState<WebAPIFormDialog> {
   late TextEditingController urlController;
+  bool _autoDownload = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     urlController = TextEditingController(text: widget.webAPI?.url);
+    _autoDownload = widget.webAPI?.autoDownload ?? false;
   }
 
   void _submit() {
     if (!_formKey.currentState!.validate()) return;
     ref.read(appWebAPISettingProvider.notifier).updateState((state) => WebAPI(
       url: urlController.text,
+      autoDownload: _autoDownload,
     ));
     Navigator.pop(context);
   }
@@ -669,6 +672,16 @@ class _WebAPIFormDialogState extends ConsumerState<WebAPIFormDialog> {
                 }
                 return null;
               },
+            ),
+            SwitchListTile(
+              value: _autoDownload,
+              onChanged: (value) {
+                setState(() {
+                  _autoDownload = value;
+                });
+              },
+              title: const Text('自动下载配置'),
+              subtitle: const Text('启动app时自动从webapi下载并应用配置'),
             ),
           ],
         ),

@@ -2307,7 +2307,7 @@ as String,
 /// @nodoc
 mixin _$WebAPI {
 
- String get url;
+ String get url; bool get autoDownload;
 /// Create a copy of WebAPI
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2320,16 +2320,16 @@ $WebAPICopyWith<WebAPI> get copyWith => _$WebAPICopyWithImpl<WebAPI>(this as Web
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebAPI&&(identical(other.url, url) || other.url == url));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebAPI&&(identical(other.url, url) || other.url == url)&&(identical(other.autoDownload, autoDownload) || other.autoDownload == autoDownload));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url);
+int get hashCode => Object.hash(runtimeType,url,autoDownload);
 
 @override
 String toString() {
-  return 'WebAPI(url: $url)';
+  return 'WebAPI(url: $url, autoDownload: $autoDownload)';
 }
 
 
@@ -2340,7 +2340,7 @@ abstract mixin class $WebAPICopyWith<$Res>  {
   factory $WebAPICopyWith(WebAPI value, $Res Function(WebAPI) _then) = _$WebAPICopyWithImpl;
 @useResult
 $Res call({
- String url
+ String url, bool autoDownload
 });
 
 
@@ -2357,10 +2357,11 @@ class _$WebAPICopyWithImpl<$Res>
 
 /// Create a copy of WebAPI
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? url = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? url = null,Object? autoDownload = null,}) {
   return _then(_self.copyWith(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
-as String,
+as String,autoDownload: null == autoDownload ? _self.autoDownload : autoDownload // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 
@@ -2445,10 +2446,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String url)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String url,  bool autoDownload)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WebAPI() when $default != null:
-return $default(_that.url);case _:
+return $default(_that.url,_that.autoDownload);case _:
   return orElse();
 
 }
@@ -2466,10 +2467,10 @@ return $default(_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String url)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String url,  bool autoDownload)  $default,) {final _that = this;
 switch (_that) {
 case _WebAPI():
-return $default(_that.url);case _:
+return $default(_that.url,_that.autoDownload);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2486,10 +2487,10 @@ return $default(_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String url)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String url,  bool autoDownload)?  $default,) {final _that = this;
 switch (_that) {
 case _WebAPI() when $default != null:
-return $default(_that.url);case _:
+return $default(_that.url,_that.autoDownload);case _:
   return null;
 
 }
@@ -2501,10 +2502,11 @@ return $default(_that.url);case _:
 @JsonSerializable()
 
 class _WebAPI implements WebAPI {
-  const _WebAPI({required this.url});
+  const _WebAPI({required this.url, this.autoDownload = false});
   factory _WebAPI.fromJson(Map<String, dynamic> json) => _$WebAPIFromJson(json);
 
 @override final  String url;
+@override@JsonKey() final  bool autoDownload;
 
 /// Create a copy of WebAPI
 /// with the given fields replaced by the non-null parameter values.
@@ -2519,16 +2521,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebAPI&&(identical(other.url, url) || other.url == url));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebAPI&&(identical(other.url, url) || other.url == url)&&(identical(other.autoDownload, autoDownload) || other.autoDownload == autoDownload));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url);
+int get hashCode => Object.hash(runtimeType,url,autoDownload);
 
 @override
 String toString() {
-  return 'WebAPI(url: $url)';
+  return 'WebAPI(url: $url, autoDownload: $autoDownload)';
 }
 
 
@@ -2539,7 +2541,7 @@ abstract mixin class _$WebAPICopyWith<$Res> implements $WebAPICopyWith<$Res> {
   factory _$WebAPICopyWith(_WebAPI value, $Res Function(_WebAPI) _then) = __$WebAPICopyWithImpl;
 @override @useResult
 $Res call({
- String url
+ String url, bool autoDownload
 });
 
 
@@ -2556,10 +2558,11 @@ class __$WebAPICopyWithImpl<$Res>
 
 /// Create a copy of WebAPI
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? url = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? url = null,Object? autoDownload = null,}) {
   return _then(_WebAPI(
 url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
-as String,
+as String,autoDownload: null == autoDownload ? _self.autoDownload : autoDownload // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

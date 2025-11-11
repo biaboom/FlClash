@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:fl_clash/common/web_api_client.dart';
 
 import 'common/common.dart';
 import 'models/models.dart';
@@ -536,28 +537,27 @@ class AppController {
   }
 
   Future<void> init() async {
-    FlutterError.onError = (details) {
-      commonPrint.log(
-        'exception: ${details.exception} stack: ${details.stack}',
-        logLevel: LogLevel.warning,
-      );
-    };
-    updateTray(true);
-    autoUpdateProfiles();
-    autoCheckUpdate();
-    autoLaunch?.updateStatus(_ref.read(appSettingProvider).autoLaunch);
-    if (!_ref.read(appSettingProvider).silentLaunch) {
-      window?.show();
-    } else {
-      window?.hide();
-    }
-    await _handlePreference();
-    await _handlerDisclaimer();
-    await _showCrashlyticsTip();
-    await _connectCore();
-    await _initCore();
     await _initStatus();
-    _ref.read(initProvider.notifier).value = true;
+    await _showCrashlyticsTip();
+    await _handlerDisclaimer();
+    await autoUpdateProfiles();
+    await _autoDownloadWebAPIConfig(); // 添加自动下载WebAPI配置
+    detectionState.startCheck();
+  }
+
+  Future<void> _autoDownloadWebAPIConfig() async {
+    final webAPI = globalState.config.webAPI;
+    // 检查是否启用了自动下载且URL不为空
+    if (webAPI != null && webAPI.autoDownload && webAPI.url.isNotEmpty) {
+      try {
+        final client = WebAPIClient(webAPI);
+        final data = await client.download();
+        await recoveryData(data, RecoveryOption.all);
+        commonPrint.log('Auto downloaded and applied WebAPI config');
+      } catch (e) {
+        commonPrint.log('Failed to auto download WebAPI config: $e');
+      }
+    }
   }
 
   Future<void> _connectCore() async {
@@ -985,4 +985,5 @@ class AppController {
       _ref.read(loadingProvider.notifier).value = false;
     }
   }
+
 }
