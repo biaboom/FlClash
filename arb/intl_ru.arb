@@ -436,5 +436,9 @@
   "crashlytics": "Анализ сбоев",
   "crashlyticsTip": "При включении автоматически загружает журналы сбоев без конфиденциальной информации, когда приложение выходит из строя",
   "appendSystemDns": "Добавить системный DNS",
-  "appendSystemDnsTip": "Принудительно добавить системный DNS к конфигурации"
+  "appendSystemDnsTip": "Принудительно добавить системный DNS к конфигурации",
+  "autoDownloadConfig": "Автозагрузка конфигурации",
+  "autoDownloadConfigDesc": "Автозагрузка и применение конфигурации при запуске приложения из WebAPI",
+  "remoteWebAPIBackupDesc": "Резервное копирование на сервер WebAPI",
+  "remoteWebAPIRecoveryDesc": "Восстановление данных с сервера WebAPI"
 }

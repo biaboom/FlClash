@@ -436,5 +436,9 @@
   "crashlytics": "クラッシュ分析",
   "crashlyticsTip": "有効にすると、アプリがクラッシュした際に機密情報を含まないクラッシュログを自動的にアップロードします",
   "appendSystemDns": "システムDNSを追加",
-  "appendSystemDnsTip": "設定にシステムDNSを強制的に追加します"
+  "appendSystemDnsTip": "設定にシステムDNSを強制的に追加します",
+  "autoDownloadConfig": "自動ダウンロード設定",
+  "autoDownloadConfigDesc": "アプリ起動時にWebAPIから設定を自動ダウンロードして適用",
+  "remoteWebAPIBackupDesc": "WebAPIサーバーにバックアップ",
+  "remoteWebAPIRecoveryDesc": "WebAPIサーバーからデータを復元"
 }

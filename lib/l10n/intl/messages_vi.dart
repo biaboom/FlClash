@@ -121,6 +121,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCloseConnectionsDesc": MessageLookupByLibrary.simpleMessage(
       "Tự động đóng kết nối sau khi thay đổi nút",
     ),
+    "autoDownloadConfig": MessageLookupByLibrary.simpleMessage(
+      "Tự động tải cấu hình",
+    ),
+    "autoDownloadConfigDesc": MessageLookupByLibrary.simpleMessage(
+      "Tự động tải và áp dụng cấu hình khi khởi động ứng dụng từ webapi",
+    ),
     "autoLaunch": MessageLookupByLibrary.simpleMessage("Tự động khởi động"),
     "autoLaunchDesc": MessageLookupByLibrary.simpleMessage(
       "Theo dõi khởi động tự động của hệ thống",
@@ -619,6 +625,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "remoteDestination": MessageLookupByLibrary.simpleMessage("Đích từ xa"),
     "remoteRecoveryDesc": MessageLookupByLibrary.simpleMessage(
       "Khôi phục dữ liệu từ WebDAV",
+    ),
+    "remoteWebAPIBackupDesc": MessageLookupByLibrary.simpleMessage(
+      "Sao lưu lên máy chủ WebAPI",
+    ),
+    "remoteWebAPIRecoveryDesc": MessageLookupByLibrary.simpleMessage(
+      "Khôi phục dữ liệu từ máy chủ WebAPI",
     ),
     "remove": MessageLookupByLibrary.simpleMessage("Xóa"),
     "rename": MessageLookupByLibrary.simpleMessage("Đổi tên"),

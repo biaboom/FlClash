@@ -123,6 +123,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCloseConnectionsDesc": MessageLookupByLibrary.simpleMessage(
       "Auto close connections after change node",
     ),
+    "autoDownloadConfig": MessageLookupByLibrary.simpleMessage(
+      "Auto download config",
+    ),
+    "autoDownloadConfigDesc": MessageLookupByLibrary.simpleMessage(
+      "Auto download and apply config at app startup",
+    ),
     "autoLaunch": MessageLookupByLibrary.simpleMessage("Auto launch"),
     "autoLaunchDesc": MessageLookupByLibrary.simpleMessage(
       "Follow the system self startup",
@@ -615,6 +621,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "remoteRecoveryDesc": MessageLookupByLibrary.simpleMessage(
       "Recovery data from WebDAV",
+    ),
+    "remoteWebAPIBackupDesc": MessageLookupByLibrary.simpleMessage(
+      "Backup to WebAPI server",
+    ),
+    "remoteWebAPIRecoveryDesc": MessageLookupByLibrary.simpleMessage(
+      "Recovery data from WebAPI server",
     ),
     "remove": MessageLookupByLibrary.simpleMessage("Remove"),
     "rename": MessageLookupByLibrary.simpleMessage("Rename"),

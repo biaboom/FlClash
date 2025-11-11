@@ -680,8 +680,8 @@ class _WebAPIFormDialogState extends ConsumerState<WebAPIFormDialog> {
                   _autoDownload = value;
                 });
               },
-              title: const Text('自动下载配置'),
-              subtitle: const Text('启动app时自动从webapi下载并应用配置'),
+              title: Text(appLocalizations.autoDownloadConfig),
+              subtitle: Text(appLocalizations.autoDownloadConfigDesc),
             ),
           ],
         ),

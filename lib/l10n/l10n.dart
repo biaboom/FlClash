@@ -3388,6 +3388,46 @@ class AppLocalizations {
       args: [],
     );
   }
+
+  /// `Auto download config`
+  String get autoDownloadConfig {
+    return Intl.message(
+      'Auto download config',
+      name: 'autoDownloadConfig',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auto download and apply config at app startup`
+  String get autoDownloadConfigDesc {
+    return Intl.message(
+      'Auto download and apply config at app startup',
+      name: 'autoDownloadConfigDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Backup to WebAPI server`
+  String get remoteWebAPIBackupDesc {
+    return Intl.message(
+      'Backup to WebAPI server',
+      name: 'remoteWebAPIBackupDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recovery data from WebAPI server`
+  String get remoteWebAPIRecoveryDesc {
+    return Intl.message(
+      'Recovery data from WebAPI server',
+      name: 'remoteWebAPIRecoveryDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {

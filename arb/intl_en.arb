@@ -435,5 +435,9 @@
   "crashlytics": "Crash Analysis",
   "crashlyticsTip": "When enabled, automatically uploads crash logs without sensitive information when the app crashes",
   "appendSystemDns": "Append System DNS",
-  "appendSystemDnsTip": "Forcefully append system DNS to the configuration"
+  "appendSystemDnsTip": "Forcefully append system DNS to the configuration",
+  "autoDownloadConfig": "Auto download config",
+  "autoDownloadConfigDesc": "Auto download and apply config at app startup",
+  "remoteWebAPIBackupDesc": "Backup to WebAPI server",
+  "remoteWebAPIRecoveryDesc": "Recovery data from WebAPI server"
 }

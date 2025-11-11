@@ -436,5 +436,9 @@
   "crashlytics": "Phân tích sự cố",
   "crashlyticsTip": "Khi được bật, tự động tải lên nhật ký sự cố không có thông tin nhạy cảm khi ứng dụng gặp sự cố",
   "appendSystemDns": "Gắn DNS hệ thống",
-  "appendSystemDnsTip": "Buộc gắn DNS hệ thống vào cấu hình"
+  "appendSystemDnsTip": "Buộc gắn DNS hệ thống vào cấu hình",
+  "autoDownloadConfig": "Tự động tải cấu hình",
+  "autoDownloadConfigDesc": "Tự động tải và áp dụng cấu hình khi khởi động ứng dụng từ webapi",
+  "remoteWebAPIBackupDesc": "Sao lưu lên máy chủ WebAPI",
+  "remoteWebAPIRecoveryDesc": "Khôi phục dữ liệu từ máy chủ WebAPI"
 }

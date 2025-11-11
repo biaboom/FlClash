@@ -436,5 +436,9 @@
   "crashlytics": "崩溃分析",
   "crashlyticsTip": "开启后，应用崩溃时自动上传不包含敏感信息的崩溃日志",
   "appendSystemDns": "追加系统DNS",
-  "appendSystemDnsTip": "强制为配置附加系统DNS"
+  "appendSystemDnsTip": "强制为配置附加系统DNS",
+  "autoDownloadConfig": "自动下载配置",
+  "autoDownloadConfigDesc": "启动app时自动从webapi下载并应用配置",
+  "remoteWebAPIBackupDesc": "备份到WebAPI服务器",
+  "remoteWebAPIRecoveryDesc": "从WebAPI服务器恢复"
 }

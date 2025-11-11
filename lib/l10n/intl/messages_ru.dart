@@ -120,6 +120,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCloseConnectionsDesc": MessageLookupByLibrary.simpleMessage(
       "Автоматически закрывать соединения после смены узла",
     ),
+    "autoDownloadConfig": MessageLookupByLibrary.simpleMessage(
+      "Автозагрузка конфигурации",
+    ),
+    "autoDownloadConfigDesc": MessageLookupByLibrary.simpleMessage(
+      "Автозагрузка и применение конфигурации при запуске приложения из WebAPI",
+    ),
     "autoLaunch": MessageLookupByLibrary.simpleMessage("Автозапуск"),
     "autoLaunchDesc": MessageLookupByLibrary.simpleMessage(
       "Следовать автозапуску системы",
@@ -648,6 +654,12 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "remoteRecoveryDesc": MessageLookupByLibrary.simpleMessage(
       "Восстановление данных с WebDAV",
+    ),
+    "remoteWebAPIBackupDesc": MessageLookupByLibrary.simpleMessage(
+      "Резервное копирование на сервер WebAPI",
+    ),
+    "remoteWebAPIRecoveryDesc": MessageLookupByLibrary.simpleMessage(
+      "Восстановление данных с сервера WebAPI",
     ),
     "remove": MessageLookupByLibrary.simpleMessage("Удалить"),
     "rename": MessageLookupByLibrary.simpleMessage("Переименовать"),

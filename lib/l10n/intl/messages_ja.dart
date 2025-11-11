@@ -95,6 +95,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCloseConnectionsDesc": MessageLookupByLibrary.simpleMessage(
       "ノード変更後に接続を自動閉じる",
     ),
+    "autoDownloadConfig": MessageLookupByLibrary.simpleMessage("自動ダウンロード設定"),
+    "autoDownloadConfigDesc": MessageLookupByLibrary.simpleMessage(
+      "アプリ起動時にWebAPIから設定を自動ダウンロードして適用",
+    ),
     "autoLaunch": MessageLookupByLibrary.simpleMessage("自動起動"),
     "autoLaunchDesc": MessageLookupByLibrary.simpleMessage("システムの自動起動に従う"),
     "autoRun": MessageLookupByLibrary.simpleMessage("自動実行"),
@@ -469,6 +473,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "remoteDestination": MessageLookupByLibrary.simpleMessage("リモート宛先"),
     "remoteRecoveryDesc": MessageLookupByLibrary.simpleMessage(
       "WebDAVからデータを復元",
+    ),
+    "remoteWebAPIBackupDesc": MessageLookupByLibrary.simpleMessage(
+      "WebAPIサーバーにバックアップ",
+    ),
+    "remoteWebAPIRecoveryDesc": MessageLookupByLibrary.simpleMessage(
+      "WebAPIサーバーからデータを復元",
     ),
     "remove": MessageLookupByLibrary.simpleMessage("削除"),
     "rename": MessageLookupByLibrary.simpleMessage("リネーム"),

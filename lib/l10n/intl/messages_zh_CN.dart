@@ -87,6 +87,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCloseConnectionsDesc": MessageLookupByLibrary.simpleMessage(
       "切换节点后自动关闭连接",
     ),
+    "autoDownloadConfig": MessageLookupByLibrary.simpleMessage("自动下载配置"),
+    "autoDownloadConfigDesc": MessageLookupByLibrary.simpleMessage(
+      "启动app时自动从webapi下载并应用配置",
+    ),
     "autoLaunch": MessageLookupByLibrary.simpleMessage("自启动"),
     "autoLaunchDesc": MessageLookupByLibrary.simpleMessage("跟随系统自启动"),
     "autoRun": MessageLookupByLibrary.simpleMessage("自动运行"),
@@ -408,6 +412,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "remoteBackupDesc": MessageLookupByLibrary.simpleMessage("备份数据到WebDAV"),
     "remoteDestination": MessageLookupByLibrary.simpleMessage("远程目标"),
     "remoteRecoveryDesc": MessageLookupByLibrary.simpleMessage("通过WebDAV恢复数据"),
+    "remoteWebAPIBackupDesc": MessageLookupByLibrary.simpleMessage(
+      "备份到WebAPI服务器",
+    ),
+    "remoteWebAPIRecoveryDesc": MessageLookupByLibrary.simpleMessage(
+      "从WebAPI服务器恢复",
+    ),
     "remove": MessageLookupByLibrary.simpleMessage("移除"),
     "rename": MessageLookupByLibrary.simpleMessage("重命名"),
     "request": MessageLookupByLibrary.simpleMessage("请求"),
