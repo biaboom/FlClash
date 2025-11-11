@@ -537,11 +537,33 @@ class AppController {
   }
 
   Future<void> init() async {
-    await _initStatus();
-    await _showCrashlyticsTip();
+        FlutterError.onError = (details) {
+      commonPrint.log(
+        'exception: ${details.exception} stack: ${details.stack}',
+        logLevel: LogLevel.warning,
+      );
+    };
+    updateTray(true);
+    autoUpdateProfiles();
+    autoCheckUpdate();
+    autoLaunch?.updateStatus(_ref.read(appSettingProvider).autoLaunch);
+    if (!_ref.read(appSettingProvider).silentLaunch) {
+      window?.show();
+    } else {
+      window?.hide();
+    }
+    await _handlePreference();
     await _handlerDisclaimer();
-    await autoUpdateProfiles();
-    await _autoDownloadWebAPIConfig(); // 添加自动下载WebAPI配置
+    await _showCrashlyticsTip();
+    await _connectCore();
+    await _initCore();
+    await _initStatus();
+    _ref.read(initProvider.notifier).value = true;
+
+    // 在后台执行自动下载WebAPI配置，避免阻塞应用启动
+    _autoDownloadWebAPIConfig().catchError((e) {
+      commonPrint.log('Failed to auto download WebAPI config: $e');
+    });
     detectionState.startCheck();
   }
 
@@ -556,6 +578,7 @@ class AppController {
         commonPrint.log('Auto downloaded and applied WebAPI config');
       } catch (e) {
         commonPrint.log('Failed to auto download WebAPI config: $e');
+        // 在后台执行失败时，不阻塞主流程，只记录错误日志
       }
     }
   }
