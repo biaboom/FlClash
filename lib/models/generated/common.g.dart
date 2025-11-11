@@ -139,6 +139,13 @@ Map<String, dynamic> _$DAVToJson(_DAV instance) => <String, dynamic>{
   'fileName': instance.fileName,
 };
 
+_WebAPI _$WebAPIFromJson(Map<String, dynamic> json) =>
+    _WebAPI(url: json['url'] as String);
+
+Map<String, dynamic> _$WebAPIToJson(_WebAPI instance) => <String, dynamic>{
+  'url': instance.url,
+};
+
 _VersionInfo _$VersionInfoFromJson(Map<String, dynamic> json) => _VersionInfo(
   clashName: json['clashName'] as String? ?? '',
   version: json['version'] as String? ?? '',

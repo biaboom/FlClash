@@ -62,8 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRule": MessageLookupByLibrary.simpleMessage("添加规则"),
     "addedOriginRules": MessageLookupByLibrary.simpleMessage("附加到原始规则"),
     "address": MessageLookupByLibrary.simpleMessage("地址"),
-    "addressHelp": MessageLookupByLibrary.simpleMessage("WebDAV服务器地址"),
-    "addressTip": MessageLookupByLibrary.simpleMessage("请输入有效的WebDAV地址"),
+    "addressHelp": MessageLookupByLibrary.simpleMessage("WebAPI服务器地址"),
+    "addressTip": MessageLookupByLibrary.simpleMessage("请输入有效的WebAPI地址"),
     "adminAutoLaunch": MessageLookupByLibrary.simpleMessage("管理员自启动"),
     "adminAutoLaunchDesc": MessageLookupByLibrary.simpleMessage("使用管理员模式开机自启动"),
     "ago": MessageLookupByLibrary.simpleMessage("前"),
@@ -342,6 +342,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "palette": MessageLookupByLibrary.simpleMessage("调色板"),
     "password": MessageLookupByLibrary.simpleMessage("密码"),
     "paste": MessageLookupByLibrary.simpleMessage("粘贴"),
+    "pleaseBindWebAPI": MessageLookupByLibrary.simpleMessage("请绑定WebAPI"),
     "pleaseBindWebDAV": MessageLookupByLibrary.simpleMessage("请绑定WebDAV"),
     "pleaseEnterScriptName": MessageLookupByLibrary.simpleMessage("请输入脚本名称"),
     "pleaseInputAdminPassword": MessageLookupByLibrary.simpleMessage(

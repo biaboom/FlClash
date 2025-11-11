@@ -181,6 +181,23 @@ class AppDAVSetting extends _$AppDAVSetting with AutoDisposeNotifierMixin {
 }
 
 @riverpod
+class AppWebAPISetting extends _$AppWebAPISetting {
+  @override
+  WebAPI? build() {
+    return globalState.config.webAPI;
+  }
+
+  @override
+  onUpdate(value) {
+    globalState.config = globalState.config.copyWith(webAPI: value);
+  }
+
+  void updateState(WebAPI? Function(WebAPI? state) builder) {
+    state = builder(state);
+  }
+}
+
+@riverpod
 class OverrideDns extends _$OverrideDns with AutoDisposeNotifierMixin {
   @override
   bool build() {

@@ -342,6 +342,9 @@ _Config _$ConfigFromJson(Map<String, dynamic> json) => _Config(
   dav: json['dav'] == null
       ? null
       : DAV.fromJson(json['dav'] as Map<String, dynamic>),
+  webAPI: json['webAPI'] == null
+      ? null
+      : WebAPI.fromJson(json['webAPI'] as Map<String, dynamic>),
   networkProps: json['networkProps'] == null
       ? defaultNetworkProps
       : NetworkProps.fromJson(json['networkProps'] as Map<String, dynamic>?),
@@ -372,6 +375,7 @@ Map<String, dynamic> _$ConfigToJson(_Config instance) => <String, dynamic>{
   'currentProfileId': instance.currentProfileId,
   'overrideDns': instance.overrideDns,
   'dav': instance.dav,
+  'webAPI': instance.webAPI,
   'networkProps': instance.networkProps,
   'vpnProps': instance.vpnProps,
   'themeProps': instance.themeProps,

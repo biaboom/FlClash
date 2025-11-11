@@ -432,6 +432,59 @@ abstract class _$AppDAVSetting extends $Notifier<DAV?> {
   }
 }
 
+@ProviderFor(AppWebAPISetting)
+const appWebAPISettingProvider = AppWebAPISettingProvider._();
+
+final class AppWebAPISettingProvider
+    extends $NotifierProvider<AppWebAPISetting, WebAPI?> {
+  const AppWebAPISettingProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'appWebAPISettingProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$appWebAPISettingHash();
+
+  @$internal
+  @override
+  AppWebAPISetting create() => AppWebAPISetting();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(WebAPI? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<WebAPI?>(value),
+    );
+  }
+}
+
+String _$appWebAPISettingHash() => r'4398d62b0292fb76fbe74e61babece8b73c3d9ae';
+
+abstract class _$AppWebAPISetting extends $Notifier<WebAPI?> {
+  WebAPI? build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<WebAPI?, WebAPI?>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<WebAPI?, WebAPI?>,
+              WebAPI?,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}
+
 @ProviderFor(OverrideDns)
 const overrideDnsProvider = OverrideDnsProvider._();
 

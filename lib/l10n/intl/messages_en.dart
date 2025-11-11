@@ -69,10 +69,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "address": MessageLookupByLibrary.simpleMessage("Address"),
     "addressHelp": MessageLookupByLibrary.simpleMessage(
-      "WebDAV server address",
+      "WebAPI server address",
     ),
     "addressTip": MessageLookupByLibrary.simpleMessage(
-      "Please enter a valid WebDAV address",
+      "Please enter a valid WebAPI address",
     ),
     "adminAutoLaunch": MessageLookupByLibrary.simpleMessage(
       "Admin auto launch",
@@ -510,6 +510,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "palette": MessageLookupByLibrary.simpleMessage("Palette"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "paste": MessageLookupByLibrary.simpleMessage("Paste"),
+    "pleaseBindWebAPI": MessageLookupByLibrary.simpleMessage(
+      "Please bind WebAPI",
+    ),
     "pleaseBindWebDAV": MessageLookupByLibrary.simpleMessage(
       "Please bind WebDAV",
     ),

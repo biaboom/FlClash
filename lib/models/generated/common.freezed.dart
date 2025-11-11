@@ -2303,6 +2303,269 @@ as String,
 
 }
 
+
+/// @nodoc
+mixin _$WebAPI {
+
+ String get url;
+/// Create a copy of WebAPI
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WebAPICopyWith<WebAPI> get copyWith => _$WebAPICopyWithImpl<WebAPI>(this as WebAPI, _$identity);
+
+  /// Serializes this WebAPI to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebAPI&&(identical(other.url, url) || other.url == url));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,url);
+
+@override
+String toString() {
+  return 'WebAPI(url: $url)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $WebAPICopyWith<$Res>  {
+  factory $WebAPICopyWith(WebAPI value, $Res Function(WebAPI) _then) = _$WebAPICopyWithImpl;
+@useResult
+$Res call({
+ String url
+});
+
+
+
+
+}
+/// @nodoc
+class _$WebAPICopyWithImpl<$Res>
+    implements $WebAPICopyWith<$Res> {
+  _$WebAPICopyWithImpl(this._self, this._then);
+
+  final WebAPI _self;
+  final $Res Function(WebAPI) _then;
+
+/// Create a copy of WebAPI
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? url = null,}) {
+  return _then(_self.copyWith(
+url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [WebAPI].
+extension WebAPIPatterns on WebAPI {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _WebAPI value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _WebAPI() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _WebAPI value)  $default,){
+final _that = this;
+switch (_that) {
+case _WebAPI():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _WebAPI value)?  $default,){
+final _that = this;
+switch (_that) {
+case _WebAPI() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String url)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _WebAPI() when $default != null:
+return $default(_that.url);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String url)  $default,) {final _that = this;
+switch (_that) {
+case _WebAPI():
+return $default(_that.url);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String url)?  $default,) {final _that = this;
+switch (_that) {
+case _WebAPI() when $default != null:
+return $default(_that.url);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _WebAPI implements WebAPI {
+  const _WebAPI({required this.url});
+  factory _WebAPI.fromJson(Map<String, dynamic> json) => _$WebAPIFromJson(json);
+
+@override final  String url;
+
+/// Create a copy of WebAPI
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WebAPICopyWith<_WebAPI> get copyWith => __$WebAPICopyWithImpl<_WebAPI>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$WebAPIToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WebAPI&&(identical(other.url, url) || other.url == url));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,url);
+
+@override
+String toString() {
+  return 'WebAPI(url: $url)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WebAPICopyWith<$Res> implements $WebAPICopyWith<$Res> {
+  factory _$WebAPICopyWith(_WebAPI value, $Res Function(_WebAPI) _then) = __$WebAPICopyWithImpl;
+@override @useResult
+$Res call({
+ String url
+});
+
+
+
+
+}
+/// @nodoc
+class __$WebAPICopyWithImpl<$Res>
+    implements _$WebAPICopyWith<$Res> {
+  __$WebAPICopyWithImpl(this._self, this._then);
+
+  final _WebAPI _self;
+  final $Res Function(_WebAPI) _then;
+
+/// Create a copy of WebAPI
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? url = null,}) {
+  return _then(_WebAPI(
+url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
 /// @nodoc
 mixin _$FileInfo {
 

@@ -1089,6 +1089,16 @@ class AppLocalizations {
     );
   }
 
+  /// `Please bind WebAPI`
+  String get pleaseBindWebAPI {
+    return Intl.message(
+      'Please bind WebAPI',
+      name: 'pleaseBindWebAPI',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Bind`
   String get bind {
     return Intl.message('Bind', name: 'bind', desc: '', args: []);
@@ -1119,20 +1129,20 @@ class AppLocalizations {
     return Intl.message('Address', name: 'address', desc: '', args: []);
   }
 
-  /// `WebDAV server address`
+  /// `WebAPI server address`
   String get addressHelp {
     return Intl.message(
-      'WebDAV server address',
+      'WebAPI server address',
       name: 'addressHelp',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please enter a valid WebDAV address`
+  /// `Please enter a valid WebAPI address`
   String get addressTip {
     return Intl.message(
-      'Please enter a valid WebDAV address',
+      'Please enter a valid WebAPI address',
       name: 'addressTip',
       desc: '',
       args: [],

@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/common/dav_client.dart';
+import 'package:fl_clash/common/web_api_client.dart';
 import 'package:fl_clash/enum/enum.dart';
 import 'package:fl_clash/models/models.dart';
 import 'package:fl_clash/providers/config.dart';
@@ -15,12 +16,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+enum SelectRemoteType { webDAV, webAPI }
+
 class BackupAndRecovery extends ConsumerWidget {
   const BackupAndRecovery({super.key});
 
   Future<void> _showAddWebDAV(DAV? dav) async {
     await globalState.showCommonDialog<String>(
       child: WebDAVFormDialog(dav: dav?.copyWith()),
+    );
+  }
+
+  Future<void> _showAddWebAPI(WebAPI? webAPI) async {
+    await globalState.showCommonDialog<String>(
+      child: WebAPIFormDialog(webAPI: webAPI?.copyWith()),
     );
   }
 
@@ -70,6 +79,54 @@ class BackupAndRecovery extends ConsumerWidget {
     );
     if (recoveryOption == null || !context.mounted) return;
     _recoveryOnWebDAV(context, client, recoveryOption);
+  }
+
+  Future<void> _backupOnWebAPI(WebAPIClient client) async {
+    final res = await globalState.appController.safeRun<bool>(
+      () async {
+        final backupData = await globalState.appController.backupData();
+        return await client.upload(Uint8List.fromList(backupData));
+      },
+      needLoading: true,
+      title: appLocalizations.backup,
+    );
+    if (res != true) return;
+    globalState.showMessage(
+      title: appLocalizations.backup,
+      message: TextSpan(text: appLocalizations.backupSuccess),
+    );
+  }
+
+  Future<void> _recoveryOnWebAPI(
+    BuildContext context,
+    WebAPIClient client,
+    RecoveryOption recoveryOption,
+  ) async {
+    final res = await globalState.appController.safeRun<bool>(
+      () async {
+        final data = await client.download();
+        await globalState.appController.recoveryData(data, recoveryOption);
+        return true;
+      },
+      needLoading: true,
+      title: appLocalizations.recovery,
+    );
+    if (res != true) return;
+    globalState.showMessage(
+      title: appLocalizations.recovery,
+      message: TextSpan(text: appLocalizations.recoverySuccess),
+    );
+  }
+
+  Future<void> _handleRecoveryOnWebAPI(
+    BuildContext context,
+    WebAPIClient client,
+  ) async {
+    final recoveryOption = await globalState.showCommonDialog<RecoveryOption>(
+      child: const RecoveryOptionsDialog(),
+    );
+    if (recoveryOption == null || !context.mounted) return;
+    _recoveryOnWebAPI(context, client, recoveryOption);
   }
 
   Future<void> _backupOnLocal(BuildContext context) async {
@@ -155,7 +212,9 @@ class BackupAndRecovery extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final dav = ref.watch(appDAVSettingProvider);
-    final client = dav != null ? DAVClient(dav) : null;
+    final webAPI = ref.watch(appWebAPISettingProvider);
+    final davClient = dav != null ? DAVClient(dav) : null;
+    final webAPIClient = webAPI != null ? WebAPIClient(webAPI) : null;
     return ListView(
       children: [
         ListHeader(title: appLocalizations.remote),
@@ -163,10 +222,10 @@ class BackupAndRecovery extends ConsumerWidget {
           ListItem(
             leading: const Icon(Icons.account_box),
             title: Text(appLocalizations.noInfo),
-            subtitle: Text(appLocalizations.pleaseBindWebDAV),
+            subtitle: Text('${appLocalizations.pleaseBindWebDAV} (WebDAV)'),
             trailing: FilledButton.tonal(
               onPressed: () {
-                _showAddWebDAV(dav);
+                _showAddWebDAV(null);
               },
               child: Text(appLocalizations.bind),
             ),
@@ -188,7 +247,7 @@ class BackupAndRecovery extends ConsumerWidget {
                 children: [
                   Text(appLocalizations.connectivity),
                   FutureBuilder<bool>(
-                    future: client!.pingCompleter.future,
+                    future: davClient!.pingCompleter.future,
                     builder: (_, snapshot) {
                       return Center(
                         child: FadeThroughBox(
@@ -210,7 +269,7 @@ class BackupAndRecovery extends ConsumerWidget {
                                   ),
                                   width: 12,
                                   height: 12,
-                                ),
+                              ),
                         ),
                       );
                     },
@@ -228,10 +287,10 @@ class BackupAndRecovery extends ConsumerWidget {
           const SizedBox(height: 4),
           ListItem.input(
             title: Text(appLocalizations.file),
-            subtitle: Text(dav.fileName),
+            subtitle: Text(dav.fileName ?? ''),
             delegate: InputDelegate(
               title: appLocalizations.file,
-              value: dav.fileName,
+              value: dav.fileName ?? '',
               resetValue: defaultDavFileName,
               onChanged: (value) {
                 _handleChange(value, ref);
@@ -240,17 +299,100 @@ class BackupAndRecovery extends ConsumerWidget {
           ),
           ListItem(
             onTap: () {
-              _backupOnWebDAV(client);
+              _backupOnWebDAV(davClient!);
             },
             title: Text(appLocalizations.backup),
-            subtitle: Text(appLocalizations.remoteBackupDesc),
+            subtitle: Text('${appLocalizations.remoteBackupDesc} (WebDAV)'),
           ),
           ListItem(
             onTap: () {
-              _handleRecoveryOnWebDAV(context, client);
+              _handleRecoveryOnWebDAV(context, davClient!);
             },
             title: Text(appLocalizations.recovery),
-            subtitle: Text(appLocalizations.remoteRecoveryDesc),
+            subtitle: Text('${appLocalizations.remoteRecoveryDesc} (WebDAV)'),
+          ),
+        ],
+        const SizedBox(height: 16),
+        ListHeader(title: '${appLocalizations.remote} (Web API)'),
+        if (webAPI == null)
+          ListItem(
+            leading: const Icon(Icons.api),
+            title: Text(appLocalizations.noInfo),
+            subtitle: Text(appLocalizations.pleaseBindWebAPI),
+            trailing: FilledButton.tonal(
+              onPressed: () {
+                _showAddWebAPI(null);
+              },
+              child: Text(appLocalizations.bind),
+            ),
+          )
+        else ...[
+          ListItem(
+            leading: const Icon(Icons.api),
+            title: TooltipText(
+              text: Text(
+                webAPI.url,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            subtitle: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(appLocalizations.connectivity),
+                  FutureBuilder<bool>(
+                    future: webAPIClient!.pingCompleter.future,
+                    builder: (_, snapshot) {
+                      return Center(
+                        child: FadeThroughBox(
+                          child:
+                              snapshot.connectionState != ConnectionState.done
+                              ? const SizedBox(
+                                  width: 12,
+                                  height: 12,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 1,
+                                  ),
+                                )
+                              : Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: snapshot.data == true
+                                        ? Colors.green
+                                        : Colors.red,
+                                  ),
+                                  width: 12,
+                                  height: 12,
+                              ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            trailing: FilledButton.tonal(
+              onPressed: () {
+                _showAddWebAPI(webAPI);
+              },
+              child: Text(appLocalizations.edit),
+            ),
+          ),
+          ListItem(
+            onTap: () {
+              _backupOnWebAPI(webAPIClient!);
+            },
+            title: Text(appLocalizations.backup),
+            subtitle: Text('${appLocalizations.remoteBackupDesc} (Web API)'),
+          ),
+          ListItem(
+            onTap: () {
+              _handleRecoveryOnWebAPI(context, webAPIClient!);
+            },
+            title: Text(appLocalizations.recovery),
+            subtitle: Text('${appLocalizations.remoteRecoveryDesc} (Web API)'),
           ),
         ],
         ListHeader(title: appLocalizations.local),
@@ -455,6 +597,109 @@ class _WebDAVFormDialogState extends ConsumerState<WebDAVFormDialog> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class WebAPIFormDialog extends ConsumerStatefulWidget {
+  final WebAPI? webAPI;
+
+  const WebAPIFormDialog({super.key, this.webAPI});
+
+  @override
+  ConsumerState<WebAPIFormDialog> createState() => _WebAPIFormDialogState();
+}
+
+class _WebAPIFormDialogState extends ConsumerState<WebAPIFormDialog> {
+  late TextEditingController urlController;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    urlController = TextEditingController(text: widget.webAPI?.url);
+  }
+
+  void _submit() {
+    if (!_formKey.currentState!.validate()) return;
+    ref.read(appWebAPISettingProvider.notifier).updateState((state) => WebAPI(
+      url: urlController.text,
+    ));
+    Navigator.pop(context);
+  }
+
+  void _delete() {
+    ref.read(appWebAPISettingProvider.notifier).updateState((state) => null);
+    Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return CommonDialog(
+      title: appLocalizations.webDAVConfiguration.replaceAll('WebDAV', 'WebAPI'),
+      actions: [
+        if (widget.webAPI != null)
+          TextButton(onPressed: _delete, child: Text(appLocalizations.delete)),
+        TextButton(onPressed: _submit, child: Text(appLocalizations.save)),
+      ],
+      child: Form(
+        key: _formKey,
+        child: Wrap(
+          runSpacing: 16,
+          children: [
+            TextFormField(
+              controller: urlController,
+              maxLines: 5,
+              minLines: 1,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.link),
+                border: const OutlineInputBorder(),
+                labelText: appLocalizations.address,
+                helperText: appLocalizations.addressHelp.replaceAll('WebDAV', 'WebAPI'),
+              ),
+              validator: (String? value) {
+                if (value == null || value.isEmpty || !value.isUrl) {
+                  return appLocalizations.addressTip.replaceAll('WebDAV', 'WebAPI');
+                }
+                return null;
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SelectRemoteTypeDialog extends ConsumerWidget {
+  const SelectRemoteTypeDialog({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return CommonDialog(
+      title: appLocalizations.remote,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      child: Wrap(
+        children: [
+          ListItem(
+            onTap: () {
+              Navigator.of(context).pop(SelectRemoteType.webDAV);
+            },
+            title: Text('WebDAV'),
+          ),
+          ListItem(
+            onTap: () {
+              Navigator.of(context).pop(SelectRemoteType.webAPI);
+            },
+            title: Text('Web API'),
+          ),
+        ],
       ),
     );
   }
