@@ -199,6 +199,15 @@ abstract class DAV with _$DAV {
 }
 
 @freezed
+abstract class WebAPI with _$WebAPI {
+  const factory WebAPI({
+    required String url,
+  }) = _WebAPI;
+
+  factory WebAPI.fromJson(Map<String, Object?> json) => _$WebAPIFromJson(json);
+}
+
+@freezed
 abstract class FileInfo with _$FileInfo {
   const factory FileInfo({required int size, required DateTime lastModified}) =
       _FileInfo;

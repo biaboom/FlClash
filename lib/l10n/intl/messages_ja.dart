@@ -64,8 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "addRule": MessageLookupByLibrary.simpleMessage("ルールを追加"),
     "addedOriginRules": MessageLookupByLibrary.simpleMessage("元のルールに追加"),
     "address": MessageLookupByLibrary.simpleMessage("アドレス"),
-    "addressHelp": MessageLookupByLibrary.simpleMessage("WebDAVサーバーアドレス"),
-    "addressTip": MessageLookupByLibrary.simpleMessage("有効なWebDAVアドレスを入力"),
+    "addressHelp": MessageLookupByLibrary.simpleMessage("WebAPIサーバーアドレス"),
+    "addressTip": MessageLookupByLibrary.simpleMessage("有効なWebAPIアドレスを入力"),
     "adminAutoLaunch": MessageLookupByLibrary.simpleMessage("管理者自動起動"),
     "adminAutoLaunchDesc": MessageLookupByLibrary.simpleMessage("管理者モードで起動"),
     "ago": MessageLookupByLibrary.simpleMessage("前"),
@@ -386,6 +386,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "palette": MessageLookupByLibrary.simpleMessage("パレット"),
     "password": MessageLookupByLibrary.simpleMessage("パスワード"),
     "paste": MessageLookupByLibrary.simpleMessage("貼り付け"),
+    "pleaseBindWebAPI": MessageLookupByLibrary.simpleMessage(
+      "WebAPIをバインドしてください",
+    ),
     "pleaseBindWebDAV": MessageLookupByLibrary.simpleMessage(
       "WebDAVをバインドしてください",
     ),

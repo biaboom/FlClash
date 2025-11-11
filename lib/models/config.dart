@@ -252,6 +252,7 @@ abstract class Config with _$Config {
     String? currentProfileId,
     @Default(false) bool overrideDns,
     DAV? dav,
+    WebAPI? webAPI,
     @Default(defaultNetworkProps) NetworkProps networkProps,
     @Default(defaultVpnProps) VpnProps vpnProps,
     @JsonKey(fromJson: ThemeProps.safeFromJson) required ThemeProps themeProps,

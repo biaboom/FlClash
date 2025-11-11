@@ -69,10 +69,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "address": MessageLookupByLibrary.simpleMessage("Địa chỉ"),
     "addressHelp": MessageLookupByLibrary.simpleMessage(
-      "Địa chỉ máy chủ WebDAV",
+      "Địa chỉ máy chủ WebAPI",
     ),
     "addressTip": MessageLookupByLibrary.simpleMessage(
-      "Vui lòng nhập địa chỉ WebDAV hợp lệ",
+      "Vui lòng nhập địa chỉ WebAPI hợp lệ",
     ),
     "adminAutoLaunch": MessageLookupByLibrary.simpleMessage(
       "Tự động khởi động quản trị viên",
@@ -512,6 +512,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "palette": MessageLookupByLibrary.simpleMessage("Bảng màu"),
     "password": MessageLookupByLibrary.simpleMessage("Mật khẩu"),
     "paste": MessageLookupByLibrary.simpleMessage("Dán"),
+    "pleaseBindWebAPI": MessageLookupByLibrary.simpleMessage(
+      "Vui lòng liên kết WebAPI",
+    ),
     "pleaseBindWebDAV": MessageLookupByLibrary.simpleMessage(
       "Vui lòng liên kết WebDAV",
     ),

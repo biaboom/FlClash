@@ -67,9 +67,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Добавить к оригинальным правилам",
     ),
     "address": MessageLookupByLibrary.simpleMessage("Адрес"),
-    "addressHelp": MessageLookupByLibrary.simpleMessage("Адрес сервера WebDAV"),
+    "addressHelp": MessageLookupByLibrary.simpleMessage("Адрес сервера WebAPI"),
     "addressTip": MessageLookupByLibrary.simpleMessage(
-      "Пожалуйста, введите действительный адрес WebDAV",
+      "Пожалуйста, введите действительный адрес WebAPI",
     ),
     "adminAutoLaunch": MessageLookupByLibrary.simpleMessage(
       "Автозапуск с правами администратора",
@@ -537,6 +537,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "palette": MessageLookupByLibrary.simpleMessage("Палитра"),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
     "paste": MessageLookupByLibrary.simpleMessage("Вставить"),
+    "pleaseBindWebAPI": MessageLookupByLibrary.simpleMessage(
+      "Пожалуйста, привяжите WebAPI",
+    ),
     "pleaseBindWebDAV": MessageLookupByLibrary.simpleMessage(
       "Пожалуйста, привяжите WebDAV",
     ),
