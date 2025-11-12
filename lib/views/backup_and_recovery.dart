@@ -385,14 +385,14 @@ class BackupAndRecovery extends ConsumerWidget {
               _backupOnWebAPI(webAPIClient!);
             },
             title: Text(appLocalizations.backup),
-            subtitle: Text('${appLocalizations.remoteBackupDesc} (Web API)'),
+            subtitle: Text('${appLocalizations.remoteWebAPIBackupDesc} '),
           ),
           ListItem(
             onTap: () {
               _handleRecoveryOnWebAPI(context, webAPIClient!);
             },
             title: Text(appLocalizations.recovery),
-            subtitle: Text('${appLocalizations.remoteRecoveryDesc} (Web API)'),
+            subtitle: Text('${appLocalizations.remoteWebAPIRecoveryDesc} '),
           ),
         ],
         ListHeader(title: appLocalizations.local),
