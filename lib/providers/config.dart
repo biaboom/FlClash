@@ -193,7 +193,9 @@ class AppWebAPISetting extends _$AppWebAPISetting {
   }
 
   void updateState(WebAPI? Function(WebAPI? state) builder) {
-    state = builder(state);
+    final newState = builder(state);
+    state = newState;
+    onUpdate(newState);
   }
 }
 
